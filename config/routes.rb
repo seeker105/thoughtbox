@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  get 'sessions/create'
 
-  get 'sessions/new'
 
   root 'static_pages#index'
 
-  # get '/sign_up', to: 
+  get '/sessions/new', to: 'sessions#new', as: :sign_up
+  post '/sessions/create', to: 'sessions#create', as: :sessions_create
 
 
 end

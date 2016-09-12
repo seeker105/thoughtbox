@@ -1,2 +1,9 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<%= form_for @user, url: sessions_create_path do |f| %>
+  <%= f.label 'email' %>
+  <%= f.text_field :email, class: "form-control" %>
+  <%= f.label 'password' %>
+  <%= f.text_field :password, class: "form-control" %>
+  <%= f.label 'password_confirmation' %>
+  <%= f.text_field :password_confirmation, class: "form-control" %>
+  <%= f.submit "Log In or Sign Up"%>
+<% end %>
