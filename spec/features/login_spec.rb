@@ -11,7 +11,7 @@ RSpec.feature "Login" do
 
     expect(page).to have_text("any@gmail.com")
     expect(page).to have_text("Sign Out")
-    expect(current_path).to eq(thoughts_index_path)
+    expect(current_path).to eq(links_index_path)
   end
 
   scenario "User Logs in with wrong confirmation password" do

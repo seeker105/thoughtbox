@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     elsif (@user.password == user_params[:password]) || @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
       cookies[:user_email] = @user.email
-      redirect_to thoughts_index_path
+      redirect_to links_index_path
     else
       redirect_to root_path
     end
