@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  context 'relationships' do
+    it { should have_many(:links) }  
+  end
+
   it "can create a new user" do
     user = User.create(email: "any@gmail.com", password: "jjj", password_confirmation: "jjj")
 
