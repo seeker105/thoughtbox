@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+  root 'static_pages#index'
+
+  get '/sessions/new', to: 'sessions#new', as: :sign_up
+  post '/sessions/create', to: 'sessions#create', as: :sessions_create
+
+
 end
