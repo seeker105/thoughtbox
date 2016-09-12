@@ -5,20 +5,12 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+Ruby version: ruby 2.3.0p0
 
-* System dependencies
+Database: postgres v 9.5.1.0
 
-* Configuration
+Test suite is RSpec. To run the test suite open the root directory and run the `rspec` command.
 
-* Database creation
+This is a simple program to allow a user to create a collection of links and give each link a title.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Live web Deployment is via [heroku](https://nameless-lake-90356.herokuapp.com/)
