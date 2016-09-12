@@ -28,6 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'awesome_print'
+gem 'validate_url'
 
 group :development, :test do
   gem 'simplecov'
@@ -38,6 +39,7 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 
 group :development do
