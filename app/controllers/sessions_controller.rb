@@ -1,20 +1,23 @@
 class SessionsController < ApplicationController
   def create
-    @user = User.find_by(email: user_params[:email])
+    @user = User.from_params(user_params)
     if @user == nil
-      @user = User.new(email: user_params[:email], password: user_params[:password], password_confirmation: user_params[:password_confirmation])
-    end
-    if @user.save
+      redirect_to root_path
+    elsif user_params[:password] != user_params[:password_confirmation]
+      redirect_to root_path
+    elsif (@user.password == user_params[:password]) || @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
       cookies[:user_email] = @user.email
+      redirect_to thoughts_index_path
     else
       redirect_to root_path
     end
   end
 
   def destroy
-    # session.clear
-    # redirect_to root_path
+    session.clear
+    cookies.delete :user_email
+    redirect_to root_path
   end
 
   def new
