@@ -1,19 +1,23 @@
 <div class="container">
   <h1>Links Index</h1>
-  <div class="container">
-    <%= form_for @link, url: link_create_path do |f| %>
+  <div class="row">
+    <div class=" col-md-6">
+      <%= form_for @link, url: link_create_path do |f| %>
       <%= f.label :url_string %>
       <%= f.text_field :url_string, class: "form-control" %>
       <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+      <%= f.text_field :title, class: "form-control" %><br />
       <%= f.submit "Create Link" %>
-    <% end %>
-  </div>
-  <div class="container">
-    <ul>
-      <% @links.each do |link| %>
-        <li><%= link.title %></li>
       <% end %>
-    </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <ul style="list-style-type:none">
+        <% @links.each do |link| %>
+        <li><h3><%= link.title %></h3></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
