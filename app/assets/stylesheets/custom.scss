@@ -1,8 +1,26 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-sprockets";
+
 
 .navbar {
   margin-bottom: 0;
   border: none;
   background-color: #f9f600;
+}
+
+.simple-list {
+  list-style: none;
+  list-style-position: inside;
+}
+
+.unread {
+  color: blue;
+}
+
+.read{
+  color: gray;
+}
+
+.link {
+  font-size: 25px;
 }

@@ -6,7 +6,6 @@ class LinksController < ApplicationController
 
   def create
     if !valid_url?(link_params[:url_string])
-      # byebug
       flash[:danger] = "Error: Bad web address"
       redirect_to links_index_path
     elsif current_user

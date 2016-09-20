@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Logged in user visits the Links index" do
+RSpec.feature "Logged in user visits the Links index", :js => true do
   scenario 'it should have the link creation form' do
     user = User.create(email: "test@user.com", password: "jjj", password_confirmation: "jjj")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -36,6 +36,7 @@ RSpec.feature "Logged in user visits the Links index" do
 
     expect(page).to have_text("Bad web address")
     expect(page).to have_no_text("Bad Url")
+
   end
 
 end
