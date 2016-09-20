@@ -2,6 +2,7 @@
   <div class='container-fluid'>
     <div class='navbar-header'>
       <% if current_user %>
+        <p class='navbar-text'><%= link_to "Links Index", links_index_path %></p>
         <p class='navbar-text'>Hello <%= current_user.email %></p>
         <p class='navbar-text'><%= link_to "Sign Out", sessions_destroy_path, method: "delete" %></p>
       <% else %>

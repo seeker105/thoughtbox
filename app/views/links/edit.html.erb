@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h1>Edit  <span class="link unread"><%= @link.title %></span></h1>
+  </div>
+  <div class="row edit-form">
+    <%= form_for @link, url: links_update_path, method: "PUT" do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control", value: @link.title %><br />
+      <%= f.label :url_string %>
+      <%= f.text_field :url_string, class: "form-control", value: @link.url_string %><br />
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
