@@ -5,9 +5,9 @@ class LinksController < ApplicationController
   end
 
   def create
-    parser = URI::Parser.new
-    if parser.parse(link_params[:url_string]) == nil
-      flash.now[:danger] = "Bad web address"
+    if !valid_url?(link_params[:url_string])
+      # byebug
+      flash[:danger] = "Error: Bad web address"
       redirect_to links_index_path
     elsif current_user
       current_user.links.create(link_params)
@@ -21,5 +21,11 @@ class LinksController < ApplicationController
   private
   def link_params
     params.require(:link).permit(:url_string, :title)
+  end
+
+  def valid_url?(url_string)
+    !!URI.parse(url_string)
+  rescue URI::InvalidURIError
+    false
   end
 end
