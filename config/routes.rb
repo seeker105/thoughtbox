@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   delete '/sessions/destroy', to: 'sessions#destroy', as: :sessions_destroy
   get 'links/index', to: 'links#index', as: :links_index
   post 'link/create', to: 'links#create'
+  get 'links/edit/:id', to: 'links#edit', as: :links_edit
+  put 'links/update/:id', to: 'links#update', as: :links_update
 end
