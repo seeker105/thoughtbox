@@ -13,7 +13,7 @@ RSpec.feature "Filter by search term", :js => true do
     within('#searchDiv') do
       expect(page).to have_field("searchTerm")
       expect(page).to have_button("Search")
-      expect(page).to have_button("Clear Search")
+      expect(page).to have_button("Clear Filter")
 
       fill_in "searchTerm", :with => "Gmail"
       click_button("Search")
@@ -39,7 +39,7 @@ RSpec.feature "Filter by search term", :js => true do
     within('#searchDiv') do
       expect(page).to have_field("searchTerm")
       expect(page).to have_button("Search")
-      expect(page).to have_button("Clear Search")
+      expect(page).to have_button("Clear Filter")
 
       fill_in "searchTerm", :with => "Hamburger"
       click_button("Search")
@@ -75,7 +75,7 @@ RSpec.feature "Filter by search term", :js => true do
     end
 
     within('#searchDiv') do
-      click_button("Clear Search")
+      click_button("Clear Filter")
     end
 
     within('#linksDiv') do

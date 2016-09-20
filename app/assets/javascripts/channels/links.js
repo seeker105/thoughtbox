@@ -6,6 +6,8 @@ $(document).ready(function(){
   $('#linksDiv').on('click', ".read-button", setUnRead)
   $('#searchDiv').on('click', ".search", runSearch)
   $('#searchDiv').on('click', ".clear-search", getLinks)
+  $('#searchDiv').on('click', ".unread-filter", searchForUnread)
+  $('#searchDiv').on('click', ".read-filter", searchForRead)
 
 
   function setRead(){
@@ -50,6 +52,23 @@ $(document).ready(function(){
       return link.title.includes(searchTerm);
     });
   }
+
+
+  function searchForRead(){
+    var readLinks = $.grep(linksInfo, function(link, x){
+      return link.read === true;
+    });
+    displayLinks(readLinks);
+  }
+  
+  function searchForUnread(){
+    var unreadLinks = $.grep(linksInfo, function(link, x){
+      return link.read === false;
+    });
+    displayLinks(unreadLinks);
+  }
+
+
 
   function displayLinks(linksInfo){
     var linksDiv = $("#linksDiv");
