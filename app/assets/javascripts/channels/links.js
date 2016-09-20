@@ -1,8 +1,12 @@
 $(document).ready(function(){
+  var linksInfo = [];
   getLinks();
 
   $('#linksDiv').on('click', ".unread-button", setRead)
   $('#linksDiv').on('click', ".read-button", setUnRead)
+  $('#searchDiv').on('click', ".search", runSearch)
+  $('#searchDiv').on('click', ".clear-search", getLinks)
+
 
   function setRead(){
     $.ajax({
@@ -27,12 +31,28 @@ $(document).ready(function(){
       method: "GET",
       url: "/api/v1/links",
       dataType: "text",
-      success: displayLinks})
+      success: displayResult})
   };
 
-  function displayLinks(ajaxData){
-    linksInfo = JSON.parse(ajaxData)
-    linksDiv = $("#linksDiv");
+  function displayResult(ajaxData){
+    linksInfo = JSON.parse(ajaxData);
+    displayLinks(linksInfo);
+  }
+
+  function runSearch(){
+    var searchString = $("#searchField")[0].value;
+    var links = searchBy(searchString);
+    displayLinks(links)
+  }
+
+  function searchBy(searchTerm){
+    return $.grep(linksInfo, function(link, x){
+      return link.title.includes(searchTerm);
+    });
+  }
+
+  function displayLinks(linksInfo){
+    var linksDiv = $("#linksDiv");
     linksDiv.html("");
     linksInfo.forEach(function(link){
       if (link.read === true) {
