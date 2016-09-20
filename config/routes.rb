@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :links, only: [:index, :update]
+    end
+  end
+
   root 'static_pages#index'
 
   get '/sessions/new', to: 'sessions#new', as: :sign_up

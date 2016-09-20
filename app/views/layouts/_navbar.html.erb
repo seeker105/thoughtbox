@@ -1,12 +1,13 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
+<nav class="nav navbar navbar-default">
+  <div class='container-fluid'>
+    <div class='navbar-header'>
       <% if current_user %>
-          <p class="navbar-text">Hello <%= current_user.email %></p>
-          <p class="navbar-text"><%= link_to "Sign Out", sessions_destroy_path, method: "delete" %></p>
+        <p class='navbar-text'>Hello <%= current_user.email %></p>
+        <p class='navbar-text'><%= link_to "Sign Out", sessions_destroy_path, method: "delete" %></p>
       <% else %>
-          <p class="navbar-text"><%= link_to "Log In or Sign Up", sign_up_path %></p>
+        <p class='navbar-text'><%= link_to "Log In or Sign Up", sign_up_path %></p>
       <% end %>
+
     </div>
   </div>
 </nav>

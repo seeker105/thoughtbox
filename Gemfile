@@ -31,6 +31,8 @@ gem 'awesome_print'
 gem 'validate_url'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'selenium-webdriver'
+
 
 group :development, :test do
   gem 'simplecov'
