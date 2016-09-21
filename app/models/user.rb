@@ -4,11 +4,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   has_many :links
 
-  def self.from_params(user_params)
-    where(email: user_params[:email]).first_or_create do |new_user|
-      new_user.email                  = user_params[:email]
-      new_user.password               = user_params[:password]
-      new_user.password_confirmation  = user_params[:password_confirmation]
-    end
-  end
+
+  # def permitted(user_params)
+  #   user_params[:password] == user_params[:password_confirmation] && self.authenticate(user_params[:password])
+  # end
 end
