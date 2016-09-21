@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   root 'static_pages#index'
 
-  get '/sessions/new', to: 'sessions#new', as: :sign_up
+  get '/sessions/new', to: 'sessions#new', as: :login
   post '/sessions/create', to: 'sessions#create', as: :sessions_create
+  get '/users/new', to: 'users#new', as: :sign_up
+  post '/users/create', to: 'users#create', as: :users_create
   delete '/sessions/destroy', to: 'sessions#destroy', as: :sessions_destroy
   get 'links/index', to: 'links#index', as: :links_index
   post 'link/create', to: 'links#create'
