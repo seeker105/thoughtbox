@@ -5,16 +5,13 @@ class LinksController < ApplicationController
   end
 
   def create
-    if !valid_url?(link_params[:url_string])
-      flash[:danger] = "Error: Bad web address"
-      redirect_to links_index_path
-    elsif current_user
-      current_user.links.create(link_params)
-      redirect_to links_index_path
+    link = current_user.links.new(link_params)
+    if link.save
+      flash[:success] = "Link Created"
     else
-      flash.now[:danger] = "No Logged in user"
-      redirect_to root_path
+      flash[:danger] = link.errors.full_messages.join(", ")
     end
+    redirect_to links_index_path
   end
 
   def edit
@@ -30,11 +27,5 @@ class LinksController < ApplicationController
   private
   def link_params
     params.require(:link).permit(:url_string, :title)
-  end
-
-  def valid_url?(url_string)
-    !!URI.parse(url_string)
-  rescue URI::InvalidURIError
-    false
   end
 end

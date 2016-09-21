@@ -34,9 +34,7 @@ RSpec.feature "Logged in user visits the Links index", :js => true do
     fill_in "Title", :with => "Bad Url"
     click_button "Create Link"
 
-    expect(page).to have_text("Bad web address")
+    expect(page).to have_text("Url string is not a valid URL")
     expect(page).to have_no_text("Bad Url")
-
   end
-
 end
