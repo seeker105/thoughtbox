@@ -15,11 +15,11 @@ class LinksController < ApplicationController
   end
 
   def edit
-    @link = Link.find_by(id: params[:id])
+    @link = current_user.links.find_by(id: params[:id])
   end
 
   def update
-    link = Link.find_by(id: params[:id])
+    link = current_user.links.find_by(id: params[:id])
     link.update_attributes(link_params)
     redirect_to links_index_path
   end
