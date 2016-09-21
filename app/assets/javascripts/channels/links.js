@@ -8,6 +8,7 @@ $(document).ready(function(){
   $('#searchDiv').on('click', ".clear-search", getLinks)
   $('#searchDiv').on('click', ".unread-filter", searchForUnread)
   $('#searchDiv').on('click', ".read-filter", searchForRead)
+  $('#searchDiv').on('click', ".alphabetical-sort", alphaSort)
 
 
   function setRead(){
@@ -60,12 +61,25 @@ $(document).ready(function(){
     });
     displayLinks(readLinks);
   }
-  
+
   function searchForUnread(){
     var unreadLinks = $.grep(linksInfo, function(link, x){
       return link.read === false;
     });
     displayLinks(unreadLinks);
+  }
+
+  function alphaSort(){
+    var sorted = linksInfo.sort(function(a, b){
+      if (a.title < b.title) {
+        return -1;
+      };
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+    displayLinks(sorted);
   }
 
 
