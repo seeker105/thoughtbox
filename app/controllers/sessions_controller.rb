@@ -6,18 +6,13 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to links_index_path
     else
-      if @user
-        flash[:danger] = @user.errors.full_messages.join(", ")
-      else
-        flash[:danger] = "Bad Login"
-      end
+      flash[:danger] = "Invalid Login"
       redirect_to login_path
     end
   end
 
   def destroy
     session.clear
-    cookies.delete :user_email
     redirect_to root_path
   end
 
@@ -27,6 +22,6 @@ class SessionsController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password)
   end
 end

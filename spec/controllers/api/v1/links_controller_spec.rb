@@ -34,10 +34,7 @@ RSpec.describe Api::V1::LinksController, type: :controller do
       expect(result[:read]).to eq(true)
       expect(response).to have_http_status(:success)
     end
-  end
 
-
-  describe "update" do
     it 'sets a link to read=false' do
       user = User.create(email: "test@user.com", password: "jjj", password_confirmation: "jjj")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -47,6 +44,19 @@ RSpec.describe Api::V1::LinksController, type: :controller do
       patch :update, params: {format: :json, id: link.id, link: {read: false}}
       result = JSON.parse(response.body, symbolize_names: true)
       expect(result[:read]).to eq(false)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'sets a link to changes the title and url' do
+      user = User.create(email: "test@user.com", password: "jjj", password_confirmation: "jjj")
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      link = user.links.create(title: "Google", url_string: "http://google.com", read: true)
+
+      expect(link.read).to eq(true)
+      patch :update, params: {format: :json, id: link.id, link: {title: "New Title", url_string: "http://gmail.com"}}
+      result = JSON.parse(response.body, symbolize_names: true)
+      expect(result[:title]).to eq("New Title")
+      expect(result[:url_string]).to eq("http://gmail.com")
       expect(response).to have_http_status(:success)
     end
   end
