@@ -6,8 +6,8 @@ $(document).ready(function(){
   $('#linksDiv').on('click', ".read-button", setUnRead)
   $('#searchDiv').on('click', ".search", runSearch)
   $('#searchDiv').on('click', ".clear-search", getLinks)
-  $('#searchDiv').on('click', ".unread-filter", searchForUnread)
-  $('#searchDiv').on('click', ".read-filter", searchForRead)
+  $('#searchDiv').on('click', ".unread-filter", {term: false}, searchForRead)
+  $('#searchDiv').on('click', ".read-filter", {term: true}, searchForRead)
   $('#searchDiv').on('click', ".alphabetical-sort", alphaSort)
 
 
@@ -54,19 +54,12 @@ $(document).ready(function(){
     });
   }
 
-
-  function searchForRead(){
-    var readLinks = $.grep(linksInfo, function(link, x){
-      return link.read === true;
+  function searchForRead(input){
+    var status = input.data.term
+    var filteredLinks = $.grep(linksInfo, function(link, x){
+      return link.read === status;
     });
-    displayLinks(readLinks);
-  }
-
-  function searchForUnread(){
-    var unreadLinks = $.grep(linksInfo, function(link, x){
-      return link.read === false;
-    });
-    displayLinks(unreadLinks);
+    displayLinks(filteredLinks);
   }
 
   function alphaSort(){
@@ -81,25 +74,4 @@ $(document).ready(function(){
     });
     displayLinks(sorted);
   }
-
-
-
-  function displayLinks(linksInfo){
-    var linksDiv = $("#linksDiv");
-    linksDiv.html("");
-    linksInfo.forEach(function(link){
-      if (link.read === true) {
-        var read = "read";
-        var buttonText = "Unread"
-      } else {
-        var read = "unread";
-        var buttonText = "Read";
-      }
-      linksDiv.append('<div class="row link-' + link.id + '" id="' + link.id + '">' + '\
-      <button type="button" class="btn btn-default ' + read + '-button">Mark as ' + buttonText + '</button>' + '\
-      <a href="edit/' + link.id + '" class="btn btn-default">Edit</a>' +'\
-      <a class="link ' + read + '" href="' + link.url_string + '">' + link.title + '</a>');
-    });
-  }
-
 })
